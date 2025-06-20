@@ -6,7 +6,7 @@
 /*   By: jtoumani <jtoumani@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 18:31:07 by jtoumani          #+#    #+#             */
-/*   Updated: 2025/06/17 12:34:36 by jtoumani         ###   ########.fr       */
+/*   Updated: 2025/06/20 15:45:51 by jtoumani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,41 @@ void	sort_three(t_stack *a)
 
 void	sort_four(t_stack *a, t_stack *b)
 {
-	push_small_top(a);
-	pb(a, b, 1);
-	sort_three(a);
-	pa(a, b, 1);
+	if (!is_sorted(a))
+	{
+		push_small_top(a);
+		pb(a, b, 1);
+		sort_three(a);
+		pa(a, b, 1);
+	}
 }
 
 void	sort_five(t_stack *a, t_stack *b)
 {
-	push_small_top(a);
-	pb(a, b, 1);
-	push_small_top(a);
-	pb(a, b, 1);
-	sort_three(a);
-	pa(a, b, 1);
-	pa(a, b, 1);
+	if (!is_sorted(a))
+	{
+		push_small_top(a);
+		pb(a, b, 1);
+		push_small_top(a);
+		pb(a, b, 1);
+		sort_three(a);
+		pa(a, b, 1);
+		pa(a, b, 1);
+	}
+}
+
+int	is_sorted(t_stack *a)
+{
+	t_node	*nbr;
+
+	nbr = a->top;
+	if (!a)
+		return (1);
+	while (nbr->next)
+	{
+		if (nbr->value > nbr->next->value)
+			return (0);
+		nbr = nbr->next;
+	}
+	return (1);
 }

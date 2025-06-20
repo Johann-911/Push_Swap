@@ -6,7 +6,7 @@
 /*   By: jtoumani <jtoumani@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 12:26:52 by jtoumani          #+#    #+#             */
-/*   Updated: 2025/06/18 12:41:34 by jtoumani         ###   ########.fr       */
+/*   Updated: 2025/06/20 15:43:10 by jtoumani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@ void				raddix_sort(t_stack *a, t_stack *b);
 void				sort_three(t_stack *a);
 void				sort_four(t_stack *a, t_stack *b);
 void				sort_five(t_stack *a, t_stack *b);
+int					is_sorted(t_stack *a);
 
 #endif
