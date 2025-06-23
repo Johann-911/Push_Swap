@@ -6,7 +6,7 @@
 /*   By: jtoumani <jtoumani@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 12:26:43 by jtoumani          #+#    #+#             */
-/*   Updated: 2025/06/20 15:45:29 by jtoumani         ###   ########.fr       */
+/*   Updated: 2025/06/23 12:21:00 by jtoumani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,20 @@ int	main(int argc, char **argv)
 	t_stack	*a;
 	t_stack	*b;
 
+	if (argc < 2 || (argc == 2 && argv[1][0] == '\0'))
+	{
+		write(2, "Error\n", 6);
+		return (1);
+	}
 	a = init_stack();
 	b = init_stack();
 	if (!a || !b)
-		return (1);
-	if (argv[1] == NULL || (argc < 2 || (argc == 2 && argv[1][0] == '\0')))
-		return (1);
+		exit_error(a, b, NULL);
 	parse_args(argc, argv, a, b);
-	if (a->size == 2)
-	{
-		if (a->top->value > a->top->next->value)
-			sa(a, 1);
-	}
-	else if (a->size == 3)
-		sort_three(a);
-	else if (a->size == 4)
-		sort_four(a, b);
-	else if (a->size == 5)
-		sort_five(a, b);
-	else
-		raddix_sort(a, b);
+	if (!is_sorted(a))
+		sort(a, b);
 	return (free_stack(a), free_stack(b), 0);
 }
+
+	// print_stack(a, "A");
+	// print_stack(b, "B");

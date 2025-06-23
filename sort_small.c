@@ -6,7 +6,7 @@
 /*   By: jtoumani <jtoumani@student.42heilbronn.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 18:31:07 by jtoumani          #+#    #+#             */
-/*   Updated: 2025/06/20 15:45:51 by jtoumani         ###   ########.fr       */
+/*   Updated: 2025/06/23 12:19:54 by jtoumani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,21 @@ void	sort_three(t_stack *a)
 
 void	sort_four(t_stack *a, t_stack *b)
 {
-	if (!is_sorted(a))
-	{
-		push_small_top(a);
-		pb(a, b, 1);
-		sort_three(a);
-		pa(a, b, 1);
-	}
+	push_small_top(a);
+	pb(a, b, 1);
+	sort_three(a);
+	pa(a, b, 1);
 }
 
 void	sort_five(t_stack *a, t_stack *b)
 {
-	if (!is_sorted(a))
-	{
-		push_small_top(a);
-		pb(a, b, 1);
-		push_small_top(a);
-		pb(a, b, 1);
-		sort_three(a);
-		pa(a, b, 1);
-		pa(a, b, 1);
-	}
+	push_small_top(a);
+	pb(a, b, 1);
+	push_small_top(a);
+	pb(a, b, 1);
+	sort_three(a);
+	pa(a, b, 1);
+	pa(a, b, 1);
 }
 
 int	is_sorted(t_stack *a)
@@ -78,4 +72,21 @@ int	is_sorted(t_stack *a)
 		nbr = nbr->next;
 	}
 	return (1);
+}
+
+void	sort(t_stack *a, t_stack *b)
+{
+	if (a->size == 2)
+	{
+		if (a->top->value > a->top->next->value)
+			sa(a, 1);
+	}
+	else if (a->size == 3)
+		sort_three(a);
+	else if (a->size == 4)
+		sort_four(a, b);
+	else if (a->size == 5)
+		sort_five(a, b);
+	else
+		raddix_sort(a, b);
 }
